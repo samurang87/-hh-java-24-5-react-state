@@ -18,39 +18,16 @@ Step 5: Enhance your search to display an error message when a non-existent name
 If you have already completed this task early, you can work on the bonus tasks.
 * */
 
-import {useState} from 'react'
 import './App.css'
-import {initialData} from './data'
-import {CharacterComponent} from "./components/CharacterComponent.tsx";
-import {Character} from "./types/Character.tsx";
-import NewCharacter from "./components/NewCharacter.tsx";
+import CharacterList from "./components/CharacterComponent.tsx";
 
 function App() {
-  const [rnm, setRnm] = useState(initialData);
-
-  const addCharacter = (newCharacter: Character) => {
-      setRnm([...rnm, newCharacter]);
-  };
 
 
   return (
     <>
         <h1>Rick and Morty Characters</h1>
-        <input
-            type="text"
-            placeholder="Search for a character"
-            onChange={(e) => {
-            const search = e.target.value
-            const filtered = initialData.filter((char) =>
-                char.name.toLowerCase().includes(search.toLowerCase())
-            )
-                setRnm(filtered);
-            }}
-        />
-        {rnm.map((char) => (
-            <CharacterComponent key={char.id} char={char}/>
-        ))}
-        <NewCharacter addCharacter={addCharacter} />
+        <CharacterList />
     </>
   )
 }
